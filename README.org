@@ -1,3 +1,0 @@
-Switch to the proper branch for the exercise.
-
-Current exercises are:
