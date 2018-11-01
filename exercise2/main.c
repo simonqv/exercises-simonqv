@@ -2,8 +2,8 @@
 #include <string.h>
 
 int main(int argc, char ** argv) {
-  char name[8];
   char pwd[8];
+  char name[8];
 
   if (argc < 3) {
     printf("Use ./main <user> <password>\n");

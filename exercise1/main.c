@@ -3,8 +3,8 @@
 #include <string.h>
 
 int main(int argc, char ** argv) {
-  char name[8];
   char pwd[8];
+  char name[8];
   int i,n = 0;
 
   printf("Start\n");
