@@ -1,6 +1,7 @@
 Switch to the proper branch for the exercise.
 
 # General information
+
 [Please see exercises instruction page on Canvas](https://kth.instructure.com/courses/6156/pages/exercises-quizzes)
 
 All the exercises are written and tested in Python 2, which is dificullt to switch to Python 3 totally. So if you are using Python 3 usually, I would recommend to use Pyenv or Virtualenv to setup a local Python 2 environment.
