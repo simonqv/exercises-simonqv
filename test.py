@@ -13,6 +13,7 @@ class test(unittest.TestCase):
         print "message %s" % value
         h = insecure_hash.hash_string(value)
         c = collision.find_collision(value)
+        self.assertTrue(c != value) # the function should not return value directly
         h1 = insecure_hash.hash_string(c)
         self.assertTrue(h == h1)
 
