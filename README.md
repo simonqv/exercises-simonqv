@@ -16,12 +16,9 @@ The configuration for the virtual machine should be the following:
 
 If there is no option for 64-bit, then you have virtualization technology disabled on your computer. This can be turned on in BIOS settings (google for instructions for you specific computer).
 
-Username: bufferoverflow Password:changethispwd
+Username: student Password: time2work
 
-This guide and all the exercises are in the directory
-`/home/student/lab-o`
-(in the VirtualBox virtual machine).
-
+This guide and all the exercises are described as follows.
 
 Requirements for this lab are:
 + understanding of C and its memory system
@@ -39,9 +36,6 @@ There are five exercises:
 - [Exercise 2](exercise2) is on buffer overflow and requires to report the file solution2.txt
 - [Exercise 3](exercise3) is on control flow hijacking and requires to report the file solution3.py
 - [Exercise 4](exercise4) is on code injection and requires to report the file solution4.py
-
-**Report these four files in a single zip file in canvas, with all files in the zip root**
-
 
 # READ ME !!!!
 **Notice that addresses on the stack described below can change,
