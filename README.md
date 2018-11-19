@@ -7,16 +7,6 @@ We suggest to use the VirtualBox image available
   binary code is the same
 + you use the same operating system and environment, thus
   memory allocation is the same we used for our experiments
-  
-The configuration for the virtual machine should be the following:
-+ Type: Linux
-+ Version: Ubuntu 64-bit
-+ Ram: >= 1 GB
-+ Disk: Use the existing vdi (the one you downloaded)
-
-If there is no option for 64-bit, then you have virtualization technology disabled on your computer. This can be turned on in BIOS settings (google for instructions for you specific computer).
-
-Username: student Password: time2work
 
 This guide and all the exercises are described as follows.
 
