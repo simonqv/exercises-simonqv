@@ -37,8 +37,8 @@ your colleagues additional problems related to the usage of one
 thread per request).
 
 To fix this problem, you must complete the stub in =filter.py=,
-which returns =True= only for inputs that do not lead to unbound
-allocation of memory. Your filter will be used in the server to
-discard malicious requests.
+which returns =True= only for the rules that do not lead to unbound
+allocation of memory. Note that =filter.py= should always be able to detect the vulnerability in the rules, even if a specific string in the test case does not cause a attack.
+Your filter will be used in the server to discard malicious requests.
 
 To test your solution execute =./test.py= or =py.test test.py=.
