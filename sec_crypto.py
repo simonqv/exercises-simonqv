@@ -9,9 +9,9 @@ class SecCrypto():
         l0 = ord(msg[0])
         r0 = ord(msg[1])
         r1 = cache.read_address(r0)
-        r1 = l0 ^ ord(key[0])
+        r1 = l0 ^ ord(key[0]) ^r1[0]
         l1 = r0
         r2 = cache.read_address(r1)
-        r2 = l1 ^ ord(key[1])
+        r2 = l1 ^ ord(key[1]) ^r2[0]
         l2 = l1
         return chr(l2)+chr(r2)

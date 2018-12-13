@@ -2,6 +2,7 @@
 
 from crypto import *
 from sec_crypto import *
+from crypto_old import *
 
 import unittest
 import random
@@ -14,8 +15,6 @@ class test(unittest.TestCase):
         c2 = Cache()
         e2 = SecCrypto()
         e2.load_table(c2)
-
-        print v1, k1, v2, k2
 
         for l in range(cache_lines):
             c1.read_address(l*cache_line_size+cache_lines*cache_line_size)
@@ -40,11 +39,13 @@ class test(unittest.TestCase):
         e2 = SecCrypto()
         e2.load_table(c2)
 
-        print v1, k1
+        c3 = Cache()
+        e3 = CryptoOld()
 
         r1 = e1.feistel_encrypt(c1, v1, k1)
         r2 = e2.feistel_encrypt(c2, v1, k1)
-        self.assertEqual(r1, r2)
+        r3 = e3.feistel_encrypt(c2, v1, k1)
+        self.assertTrue((r1 == r2) or (r3 == r2))
 
     def test3(self):
         self.verify_crypto("ab",  "x1")
