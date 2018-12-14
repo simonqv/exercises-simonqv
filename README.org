@@ -7,6 +7,8 @@ Current exercises are:
 - dos
 - side-channels
 
+*Please note that there is a bug fixed according to this [discussion](https://kth.instructure.com/courses/6156/discussion_topics/48741/entry-61956).*
+
 * Side-channels
 File =crypto.py= implements a simple Feistel two rounds symmetric
 cipher [https://en.wikipedia.org/wiki/Feistel_cipher], where each
