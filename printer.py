@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
 
 
 def decompress(text):
@@ -34,4 +34,4 @@ AR endowed with reason H conscience H should act towards one
 another in a spirit of brh. 
     """)
     
-    print res
+    print(res)
