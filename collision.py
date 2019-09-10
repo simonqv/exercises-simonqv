@@ -4,11 +4,11 @@ from Crypto.Cipher import AES
 
 
 def find_collision(message):
-    return ""
+    return "".encode()
 
 
 if __name__ == '__main__':
-    message = "aaaaaaaaaaaaaaaabbbbbbbbbbbbbbbb"
+    message = "aaaaaaaaaaaaaaaabbbbbbbbbbbbbbbb".encode()
     print("Hash of %s is %s" % (message, hash_string(message)))
     collision = find_collision(message)
     print("Hash of %s is %s" % (collision, hash_string(collision)))

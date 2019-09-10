@@ -10,6 +10,7 @@ import collision
 
 class test(unittest.TestCase):
     def singleTest(self, value):
+        value = value.encode()
         print("message %s" % value)
         h = insecure_hash.hash_string(value)
         c = collision.find_collision(value)
