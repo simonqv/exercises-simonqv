@@ -6,9 +6,9 @@ class Cache():
         self.cache = [{"tag":None, "value":None} for line in range(cache_lines)]
         self.memory = [0 for i in range(mem_size)]
     def line_from_address(self, address):
-        return (address/cache_line_size)%cache_lines
+        return (address//cache_line_size)%cache_lines
     def tag_from_address(self, address):
-        return (address/cache_line_size)
+        return (address//cache_line_size)
     def read_address(self, address):
         miss = False
         l = self.line_from_address(address)
