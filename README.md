@@ -2,7 +2,8 @@ Switch to the proper branch for the exercise.
 
 # General information
 
-[Please see exercises instruction page on Canvas](https://kth.instructure.com/courses/6156/pages/exercises-quizzes)
+[Please see exercises instruction page on Canvas](https://kth.instructure.com/courses/12372/pages/how-to-setup-and-submit-lab-o-and-exercises)
 
-All the exercises are written and tested in Python 2, which is dificullt to switch to Python 3 totally. So if you are using Python 3 usually, I would recommend to use Pyenv or Virtualenv to setup a local Python 2 environment.
+All the exercises are written and tested in Python 3.
+
 Regarding python modules, some exercises will require more modules, you could use pip/easy_install to install them. For Windows users, you might need [prebuilt binaries](http://www.voidspace.org.uk/python/modules.shtml#pycrypto).
