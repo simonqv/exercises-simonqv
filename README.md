@@ -352,7 +352,7 @@ a pointer (integer value of 4 bytes) to a string that can be printed to the stdo
 import sys
 import struct
 pointer = 0x80485ba
-sys.stdout.write(struct.pack("@P", pointer))
+sys.stdout.buffer.write(struct.pack("@P", pointer))
 ```
-Here, `struct.pack("@P", pointer)` encodes the pointer to a string and
-`sys.stdout.write` prints the string the standard output (without newline).
+Here, `struct.pack("@P", pointer)` encodes the pointer to a byte string and
+`sys.stdout.buffer.write` prints the string of bytes to the standard output (without newline).
