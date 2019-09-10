@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
 
 import unittest
 import subprocess
@@ -10,7 +10,7 @@ class test(unittest.TestCase):
 	except:
 		pass
 	res = open("res.txt").read()
-	print res
+	print(res)
         self.assertTrue(res.find("your pwd is: pwd0") >= 0)
 
 

@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
 
 import unittest
 import subprocess
@@ -9,8 +9,9 @@ class test(unittest.TestCase):
 		subprocess.check_output("unbuffer make attack > res.txt", shell=True)
 	except:
 		pass
-	res = open("res.txt").read()
-	print res
+        with open("res.txt") as f:
+            res = f.read()
+	print(res)
         self.assertTrue(res.find("root:") >= 0)
         self.assertTrue(res.find("student:") >= 0)
 
