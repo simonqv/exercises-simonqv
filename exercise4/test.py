@@ -9,7 +9,7 @@ class test(unittest.TestCase):
 			subprocess.check_output("unbuffer make attack > res.txt", shell=True)
 		except:
 			pass
-		with open("res.txt", rb) as f:
+		with open("res.txt", "rb") as f:
 			res = f.read()
 		print(res.decode(errors="replace"))
 		self.assertTrue(res.find("root:".encode()) >= 0)
