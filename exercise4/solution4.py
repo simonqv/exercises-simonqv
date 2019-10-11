@@ -2,13 +2,24 @@
 import sys
 import struct
 
+# make sure to use these functions to write strings or bytes (bytestring) so that the order is preserved
+def writeStr(v):
+	sys.stdout.flush()
+	sys.stdout.buffer.write(v.encode("ascii"))
+	sys.stdout.flush()
 
-with open("shell.bin") as f:
+def writeBytes(v):
+	sys.stdout.flush()
+	sys.stdout.buffer.write(v)
+	sys.stdout.flush()
+
+# read shellscript as bytestring, use writeBytes(payload) to write it out
+with open("shell.bin", "rb") as f:
     payload = f.read()
 
-sys.stdout.write("header")
-sys.stdout.write("\n")
+writeStr("header")
+writeStr("\n")
 
-sys.stdout.write("body")
-sys.stdout.write("\n")
+writeStr("body")
+writeStr("\n")
 

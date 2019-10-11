@@ -351,8 +351,18 @@ a pointer (integer value of 4 bytes) to a string that can be printed to the stdo
 ```
 import sys
 import struct
+def writeStr(v):
+	sys.stdout.flush()
+	sys.stdout.buffer.write(v.encode("ascii"))
+	sys.stdout.flush()
+
+def writeBytes(v):
+	sys.stdout.flush()
+	sys.stdout.buffer.write(v)
+	sys.stdout.flush()
 pointer = 0x80485ba
-sys.stdout.buffer.write(struct.pack("@P", pointer))
+writeBytes(struct.pack("@P", pointer))
 ```
 Here, `struct.pack("@P", pointer)` encodes the pointer to a byte string and
-`sys.stdout.buffer.write` prints the string of bytes to the standard output (without newline).
+`writeBytes` prints the string of bytes to the standard output (without newline).
+
