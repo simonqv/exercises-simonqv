@@ -9,7 +9,7 @@ class test(unittest.TestCase):
 		value = [l.split(" ") for l in lines if not(l.startswith("#"))][0]
 		self.assertTrue(value[1] != "pwd0")
 		res = subprocess.check_output(["./main"] + value)
-		self.assertTrue(res.find("non authorized") < 0)
+		self.assertTrue(res.find("non authorized".encode()) < 0)
 
 
 if __name__ == '__main__':
