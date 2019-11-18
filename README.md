@@ -1,7 +1,7 @@
 # Lab on Buffer overflow
 
 We suggest to use the VirtualBox image available
-[on the VM page on Canvas](https://kth.instructure.com/courses/6156/pages/the-dasak-vm). This will ensure that:
+[on the VM page on Canvas](https://kth.instructure.com/courses/12372/pages/the-dasak-vm). This will ensure that:
 + you have all the tools ready to use
 + you use the same version of the tools that we used, thus the produced
   binary code is the same
