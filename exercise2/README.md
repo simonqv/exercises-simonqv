@@ -2,23 +2,23 @@
 
 The application requires two arguments: (1) a username and (2) a password.
 ```
-Use ./main <user> <password>
+Use ./main.elf <user> <password>
 ```
 For example
 ```
-> ./main roberto 1234
+> ./main.elf roberto 1234
 Start
 Hello roberto
 non authorized
 End
 
-> ./main roberto pwd0
+> ./main.elf roberto pwd0
 Start
 Hello roberto
 authorized
 End
 
-> ./main hello pwd0
+> ./main.elf hello pwd0
 Start
 Hello hello
 authorized
@@ -30,7 +30,7 @@ Forge two command line arguments that
 allow you to be authenticated
 with a wrong password.
 Write your solution in the file `solution2.txt`.
-For instance, if you used `./main hello 12345`,
+For instance, if you used `./main.elf hello 12345`,
 then your `solution2.txt` file should look like
 ```
 # exercise 2

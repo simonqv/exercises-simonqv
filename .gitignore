@@ -1,14 +1,8 @@
 
-exercise1/main
+*.pyc
+__pycache__
 
-exercise2/main
-
-exercise3/main
-exercise3/res.txt
-exercise3/text
-
-exercise4/main
-exercise4/res.txt
-exercise4/text
-exercise4/shell.bin
-
+*.elf
+*.bin
+*.out
+*.fifo

@@ -1,10 +1,22 @@
-all: main shell
+.PHONY: all attack clean test
 
-main: main.c
-	gcc -fno-stack-protector -z execstack -O0  -ggdb -o main main.c
+all: main.elf shell.bin
 
-shell:
-	python shell.py
+main.elf: main.c
+	gcc -fno-stack-protector -z execstack -O0  -ggdb -o main.elf main.c
 
-attack: main shell
-	./solution4.py > text; ./main < text
+shell.bin: shell.asm
+	nasm -f elf64 -o shell.elf shell.asm
+	objcopy -O binary shell.elf shell.bin
+
+my.fifo:
+	mkfifo my.fifo
+
+attack: main.elf shell.bin my.fifo 
+	./solution4.py < my.fifo | ./main.elf 2>my.fifo
+
+test:
+	./test.py
+
+clean:
+	rm -f *.elf *.bin my.fifo *.out

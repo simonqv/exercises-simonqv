@@ -1,5 +1,9 @@
 #include <stdio.h>
 #include <string.h>
+#define DEBUG 1
+
+// PS. NEVER use gets() in real code.
+char * gets ( char * str );
 
 char * pwd = "pwd0";
 
@@ -8,7 +12,7 @@ void print_my_pwd() {
 }
 
 int check_user(char * uname, char * upwd) {
-  char name[8];
+  char name[12];
   strcpy(name, uname);
   
   if (strcmp(pwd, upwd)) {
@@ -21,18 +25,18 @@ int check_user(char * uname, char * upwd) {
 }
 
 int main(int argc, char ** argv) {
-  char name[8];
+#ifdef DEBUG
+  fprintf(stderr, "%p\n", main);
+#endif
+  char name[128];
+  char pass[128];
 
-  if (argc < 3) {
-    printf("Use ./main <user> <password>\n");
-    return 1;
-  }
-
-  printf("Start\n");
-  printf("Hello %s\n",argv[1]);
-
-  check_user(argv[1], argv[2]);
-
+  printf("Name? \n");
+  gets(name);
+  printf("Password? \n");
+  gets(pass);
+  printf("Hello %s\n", name);
+  check_user(name, pass);
   printf("End\n");
   return 0;
 }
