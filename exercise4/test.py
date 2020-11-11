@@ -6,7 +6,7 @@ import subprocess
 class test(unittest.TestCase):
     def test(self):
         try:
-            subprocess.check_output("make attack > res.out", shell=True)
+            subprocess.check_output("unbuffer make attack > res.out", shell=True)
         except:
             pass
         with open("res.out", "rb") as f:
