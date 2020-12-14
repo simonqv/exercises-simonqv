@@ -1,14 +1,7 @@
 # Lab on Buffer overflow
 
-We suggest to use the VirtualBox image available
-[on the VM page on Canvas](https://kth.instructure.com/courses/6156/pages/the-dasak-vm). This will ensure that:
-+ you have all the tools ready to use
-+ you use the same version of the tools that we used, thus the produced
-  binary code is the same
-+ you use the same operating system and environment, thus
-  memory allocation is the same we used for our experiments
-
-This guide and all the exercises are described as follows.
+We suggest to use the VirtualBox image available VM page. This will
+ensure that you have the correct *environment* and tools for the lab.
 
 Requirements for this lab are:
 + understanding of C and its memory system
@@ -19,26 +12,29 @@ Requirements for this lab are:
 
 All you experiments should be done in the virtual machine of VirtualBox.
 
-There are five exercises:
-- [Exercise 0](exercise0) contains the program used by the following tutorial. It is not required to report any solution for this exercise.
-- [Exercise 1](exercise1) is on buffer overread and requires to report the file solution1.txt
-- [Exercise 2](exercise2) is on buffer overflow and requires to report the file solution2.txt
-- [Exercise 3](exercise3) is on control flow hijacking and requires to report the file solution3.py
-- [Exercise 4](exercise4) is on code injection and requires to report the file solution4.py
+There are four exercises:
+- [Exercise 1](exercise1) is on buffer overread, the solution should be in `solution1.txt`.
+- [Exercise 2](exercise2) is on buffer overflow, the solution should be in `solution2.txt`.
+- [Exercise 3](exercise3) is on control flow hijacking, the solution should be in `solution3.py`.
+- [Exercise 4](exercise4) is on code injection, the solution should be in `solution4.py`.
 
 # READ ME !!!!
-**Notice that addresses on the stack described below can change, for example if you run the program into different terminals or nested Bash instances**
+**Notice that addresses on the stack described below can change, for example if
+you run the program into different terminals or nested Bash instances.**
 
-# Background GDB
+# GDB Tutorial
 
-To complete the exercises you must use a debugger or a dissassembler to inspect the code produced by the compiler and find out the memory layout of the application. Here we summarize some basic commands of GDB that are useful to complete your exercises.
+To complete the exercises you must use a debugger or a dissassembler to inspect
+the code produced by the compiler and find out the memory layout of the
+application. Here we summarize some basic commands of GDB that are useful to
+complete your exercises. *Note that this tutorial was made for an earlier
+32-bit VM, today we use a 64-bit VM so the memory addresses will look
+different.*
 
-The directory `exercise0` contains a small program to demonstrate the usage of GDB. Move in the directory `exercise0`
+The directory `tutorial` contains a small program to demonstrate the usage of
+GDB. Move in the directory `tutorial` and compiule the example program.
 ```
-cd exercise0
-```
-Compile the example program
-```
+cd tutorial 
 make
 ```
 
@@ -297,24 +293,3 @@ This address corresponds to line 25 of `main`: the line that immediately follows
 
 ## References
 Look at [GDB Manual](https://sourceware.org/gdb/current/onlinedocs/gdb/) for more detailed information on GDB.
-
-# python
-In some exercises you must forge inputs or argument that exploit overflows and redirect the control flow of a program.  Forging these inputs can be tricky since they contain characters that represent binary values (e.g. pointers or binary code).  For this reason it is usually easier to prepare inputs using python.  For example, the following snippet encodes a pointer (integer value of 4 bytes) to a string that can be printed to the stdout.
-
-```
-import sys
-import struct
-def writeStr(v):
-	sys.stdout.flush()
-	sys.stdout.buffer.write(v.encode("ascii"))
-	sys.stdout.flush()
-
-def writeBytes(v):
-	sys.stdout.flush()
-	sys.stdout.buffer.write(v)
-	sys.stdout.flush()
-pointer = 0x80485ba
-writeBytes(struct.pack("@P", pointer))
-```
-Here, `struct.pack("@P", pointer)` encodes the pointer to a byte string and `writeBytes` prints the string of bytes to the standard output (without newline).
-
