@@ -4,6 +4,7 @@ from Crypto.Cipher import AES
 
 
 def find_collision(message):
+    # Your solution.
     return "".encode()
 
 
