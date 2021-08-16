@@ -39,4 +39,4 @@ Note that `filter.py` should always be able to detect the vulnerability in the
 rules, even if a specific string in the test case does not cause a attack.
 Your filter will be used in the server to discard malicious requests.
 
-To test your solution execute `./test.py` or `py.test test.py`.
+To test your solution execute `./test.py`.
