@@ -7,12 +7,16 @@ Use ./main.elf <user> <chars-to-echo>
 ```
 For example
 ```
-./main.elf hello 2
+# Compile the program
+$ make
+
+# Run the program
+$ ./main.elf hello 2
 Start
 Echo he
 End
 
-./main.elf hello 5
+$ ./main.elf hello 5
 Start
 Echo hello
 End
@@ -20,12 +24,10 @@ End
 
 ## Problem 1.1
 
-Forge two command line arguments that
-make the application to leak the password that is
-stored internally.
-Write your solution in the file solution1.txt.
-For instance, if you used `./main.elf hello 5` to leak the password,
-then your `solution1.txt` file should look like
+Forge two command line arguments that make the application to leak the password
+that is stored internally.  Write your solution in the file `solution1.txt`.
+For instance, if you used `./main.elf hello 5` to leak the password, then your
+`solution1.txt` file should look like
 ```
 # exercise 1
 # question 1
@@ -36,7 +38,7 @@ hello 5
 # end
 ```
 
-To test your solution execute =./test.py= or =py.test test.py=.
+To test your solution execute `./test.py`.
 
 ## Hints
 Debug the program using GDB. Find the distance between the
