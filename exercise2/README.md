@@ -6,19 +6,22 @@ Use ./main.elf <user> <password>
 ```
 For example
 ```
-> ./main.elf roberto 1234
+# Compile the program 
+$ make
+
+$ ./main.elf roberto 1234
 Start
 Hello roberto
 non authorized
 End
 
-> ./main.elf roberto pwd0
+$ ./main.elf roberto pwd0
 Start
 Hello roberto
 authorized
 End
 
-> ./main.elf hello pwd0
+$ ./main.elf hello pwd0
 Start
 Hello hello
 authorized
@@ -42,7 +45,7 @@ hello 12345
 # end
 ```
 
-To test your solution execute =./test.py= or =py.test test.py=.
+To test your solution execute `./test.py`.
 
 ## Hints
 Debug the program using GDB. Find the distance between the

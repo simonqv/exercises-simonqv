@@ -1,44 +1,49 @@
 # Lab on Buffer overflow
 
-We suggest to use the VirtualBox image available
-[on the VM page on Canvas](https://kth.instructure.com/courses/6156/pages/the-dasak-vm). This will ensure that:
-+ you have all the tools ready to use
-+ you use the same version of the tools that we used, thus the produced
-  binary code is the same
-+ you use the same operating system and environment, thus
-  memory allocation is the same we used for our experiments
-
-This guide and all the exercises are described as follows.
+**IMPORTANT.** Use the Virtual Machine image from the VM page in Canvas to
+complete this lab. The success of buffer-overflow attacks are depends on
+compilers, memory layouts, hardware and more. By using the VM, you ensure that
+you have the correct setup for developing your buffer-overflow solution,
+meaning that if your solution passes all tests in the VM, the grading server
+should pass it too. If you do not use the VM, we can not guarantee that the
+grading server will pass your solution even if it passes all tests
+locally.
 
 Requirements for this lab are:
-+ understanding of C and its memory system
-+ usage of GDB
-+ usage of linux shell
-+ minimal usage of python
-+ usage of VirtualBox
 
-All you experiments should be done in the virtual machine of VirtualBox.
+- understanding of C and its memory system,
+- understanding of ASLR (Address Space Layout Randomization),
+- usage of GDB,
+- usage of Linux shell,
+- minimal usage of python, and
+- usage of VirtualBox (or some other compatible hypervisor). 
 
-There are five exercises:
-- [Exercise 0](exercise0) contains the program used by the following tutorial. It is not required to report any solution for this exercise.
-- [Exercise 1](exercise1) is on buffer overread and requires to report the file solution1.txt
-- [Exercise 2](exercise2) is on buffer overflow and requires to report the file solution2.txt
-- [Exercise 3](exercise3) is on control flow hijacking and requires to report the file solution3.py
-- [Exercise 4](exercise4) is on code injection and requires to report the file solution4.py
+**All you experiments should be done in provided VM.**
 
-# READ ME !!!!
-**Notice that addresses on the stack described below can change, for example if you run the program into different terminals or nested Bash instances**
+There are four exercises:
 
-# Background GDB
+- [Exercise 1](exercise1) is on buffer over-read, the solution should be in `solution1.txt`.
+- [Exercise 2](exercise2) is on buffer overflow, the solution should be in `solution2.txt`.
+- [Exercise 3](exercise3) is on control flow hijacking, the solution should be in `solution3.py`.
+- [Exercise 4](exercise4) is on code injection, the solution should be in `solution4.py`.
 
-To complete the exercises you must use a debugger or a dissassembler to inspect the code produced by the compiler and find out the memory layout of the application. Here we summarize some basic commands of GDB that are useful to complete your exercises.
+# GDB Tutorial
 
-The directory `exercise0` contains a small program to demonstrate the usage of GDB. Move in the directory `exercise0`
+*Note: This tutorial was made for an older 32-bit VM with 4 byte long pointers and
+memory addresses. Today, we use a 64-bit VM so the memory addresses and
+pointers are now 8 byte long.*
+
+To complete the exercises you must use a debugger or a disassembler to inspect
+the code produced by the compiler and find out the memory layout of the
+application. Note that the virtual machine utilizes ASLR, so the base addresses
+of the stack, text and data sections will be randomized for each execution.
+Here we summarize some basic commands of GDB that are useful to complete your
+exercises. 
+
+The directory `tutorial` contains a small program to demonstrate the usage of
+GDB. Move in the directory `tutorial` and compile the example program.
 ```
-cd exercise0
-```
-Compile the example program
-```
+cd tutorial 
 make
 ```
 
@@ -49,7 +54,7 @@ Run the program
 ./main <username>
 <enter a random password>
 ```
-To debug the program with gdb, use
+To debug the program with gdb,
 ```
 gdb main
 ```
@@ -89,7 +94,7 @@ run roberto < pwd.txt
 ```
 
 ## Inspecting memory
-Debug the program with gdb, set a breakpoint at line 11 of `main.c`, start the program providing the command line argument:
+Debug the program with `gdb`, set a breakpoint at line 11 of `main.c`, start the program providing the command line argument:
 ```
 ~/lab-o/buffer/exercise0$ gdb main
 
@@ -175,7 +180,9 @@ $16 = 0xbffff36c "roberto"
 ```
 We are using a 32-bit machine, so pointers are 4 bytes.
 
-(four bytes) Before and after the variable `username` there is something else.  (it's not important what, we want just demonstrate that you can read arbitrary addresses in memory)
+(four bytes) Before and after the variable `username` there is something else.
+(it's not important what, we want just demonstrate that you can read arbitrary
+addresses in memory)
 ```
 (gdb) x/a 0xbffff088
 0xbffff088:	0xb7e21c34
@@ -193,8 +200,8 @@ $18 = (int (*)(int, char **)) 0x8048588 <main>
 ```
 
 ## Changing memory content
-Debug the program with gdb, set a breakpoint at line 11 of `main.c`,
-start the program providing the command line argument:
+Debug the program with gdb, set a breakpoint at line 11 of `main.c`, start the
+program providing the command line argument:
 ```
 ~/lab-o/exercise0$ gdb main
 ...
@@ -272,10 +279,11 @@ Stack level 0, frame at 0xbffff0c0:
   ebp at 0xbffff0b8, eip at 0xbffff0bc
 ```
 The active frame (i.e. the one for `afunction`) ends at address `0xbffff0c0`.  Inside the frame (i.e. below its end-address) there are (in order):
-+ parameters (i.e. `username`)
-+ local variables (i.e. `local_var`)
-+ the address where the previous frame started (at address `0xbffff0c0-8`)
-+ the `saved eip` (at address `0xbffff0c0-4`)
+
+- parameters (i.e. `username`)
+- local variables (i.e. `local_var`)
+- the address where the previous frame started (at address `0xbffff0c0-8`)
+- the `saved eip` (at address `0xbffff0c0-4`)
 
 ```
 p &username 
@@ -288,33 +296,15 @@ x/a (0xbffff0c0-8)
 0xbffff0bc:	0x80485ba <main+50>
 ```
 
-The `saved eip` is the return address, which is the address where the funciton should jump back after termination. In this case, the invocation of `afunction` should jump back to the address `0x80485ba`.  Information about the code located at this address is obtained as follows:
+The `saved eip` is the return address, which is the address where the funciton
+should jump back after termination. In this case, the invocation of `afunction`
+should jump back to the address `0x80485ba`.  Information about the code
+located at this address is obtained as follows:
 ```
 (gdb) info line *0x80485ba
 Line 25 of "main.c" starts at address 0x80485ba <main+50> and ends at 0x80485bf <main+55>.
-```
-This address corresponds to line 25 of `main`: the line that immediately follows the invocation of `afunction`.
+``` This address corresponds to line 25 of `main`: the line that immediately
+follows the invocation of `afunction`.
 
 ## References
 Look at [GDB Manual](https://sourceware.org/gdb/current/onlinedocs/gdb/) for more detailed information on GDB.
-
-# python
-In some exercises you must forge inputs or argument that exploit overflows and redirect the control flow of a program.  Forging these inputs can be tricky since they contain characters that represent binary values (e.g. pointers or binary code).  For this reason it is usually easier to prepare inputs using python.  For example, the following snippet encodes a pointer (integer value of 4 bytes) to a string that can be printed to the stdout.
-
-```
-import sys
-import struct
-def writeStr(v):
-	sys.stdout.flush()
-	sys.stdout.buffer.write(v.encode("ascii"))
-	sys.stdout.flush()
-
-def writeBytes(v):
-	sys.stdout.flush()
-	sys.stdout.buffer.write(v)
-	sys.stdout.flush()
-pointer = 0x80485ba
-writeBytes(struct.pack("@P", pointer))
-```
-Here, `struct.pack("@P", pointer)` encodes the pointer to a byte string and `writeBytes` prints the string of bytes to the standard output (without newline).
-
