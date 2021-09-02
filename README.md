@@ -18,4 +18,4 @@ of the cipher in `sec_crypto.py`. The new implementation must use the cache,
 but must be free of side channels.  You are free to organize the substitution
 table in a different way, perform additional memory accesses, etc.
 
-To test your solution execute `./test.py` or `py.test test.py`.
+To test your solution execute `./test.py`.
