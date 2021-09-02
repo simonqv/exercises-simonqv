@@ -1,4 +1,9 @@
-*.pyc
-__pycache__
-result.py
-
+*
+!malware.py
+!payload2.py
+!victim1.py
+!README.md
+!.gitignore
+!test.py
+!payload1.py
+!antivirus.py
