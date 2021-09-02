@@ -24,6 +24,6 @@ def hash_string(message):
 
 
 if __name__ == '__main__':
-    print (hash_string("aaaaaaaaaaaaaaaabbbbbbbbbbbbbbbb"))
-    print (hash_string("bbbbbbbbbbbbbbbbaaaaaaaaaaaaaaaa"))
-    print (hash_string("0123456789abcdefhello"))
+    print (hash_string("aaaaaaaaaaaaaaaabbbbbbbbbbbbbbbb".encode()))
+    print (hash_string("bbbbbbbbbbbbbbbbaaaaaaaaaaaaaaaa".encode()))
+    print (hash_string("0123456789abcdefhello".encode()))
