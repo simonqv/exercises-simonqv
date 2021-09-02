@@ -1,3 +1,6 @@
-*.pyc
-__pycache__
-
+*
+!filter.py
+!README.md
+!.gitignore
+!printer.py
+!test.py
