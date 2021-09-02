@@ -20,7 +20,7 @@ class test(unittest.TestCase):
             c1.read_address(l*cache_line_size+cache_lines*cache_line_size)
             c2.read_address(l*cache_line_size+cache_lines*cache_line_size)
             
-        v1 = e1.feistel_encrypt(c1, v1, k2)
+        v1 = e1.feistel_encrypt(c1, v1, k1)
         v2 = e2.feistel_encrypt(c2, v2, k2)
         self.assertEqual(c1.cache, c2.cache)
         
