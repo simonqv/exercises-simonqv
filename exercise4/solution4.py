@@ -40,7 +40,7 @@ ripat = 0x7fffffffde08
 
 
 writeStr("."*(ripat - mail_subject)
-p = pmutex - mail_body
+p = pmutex - (mutex - mail_body)
 writeLong(p)
 writeStr("\n")
 
