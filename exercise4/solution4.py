@@ -40,6 +40,7 @@ ripat = 0x7fffffffde08
 
 
 writeStr("."*(ripat - mail_subject)
+writeStr("\n")
 
 writeBytes(mutex)
 writeStr("\n")
