@@ -39,7 +39,7 @@ mail_subject = 0x7fffffffdde0
 ripat = 0x7fffffffde08
 
 
-writeStr("."*(ripat - mail_subject)
+writeStr("."*(ripat - mail_subject))
 p = pmutex - (mutex - mail_body)
 writeLong(p)
 writeStr("\n")
