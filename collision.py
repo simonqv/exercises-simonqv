@@ -4,8 +4,11 @@ from Crypto.Cipher import AES
 
 
 def find_collision(message):
-    # Your solution.
-    return "".encode()
+    new_key = b'x'*16
+    old_hash_val = hash_string(message)
+    cipher = AES.new(new_key)
+    
+    return cipher.encrypt(old_hash_val) + new_key
 
 
 if __name__ == '__main__':
